@@ -1,0 +1,2624 @@
+{
+  "objects" : {
+    "collections" : [ {
+      "id" : "nhtsa_complaints",
+      "createdAt" : "2017-01-31T20:23:44.896Z",
+      "searchClusterId" : "default",
+      "commitWithin" : 10000,
+      "solrParams" : {
+        "name" : "nhtsa_complaints",
+        "numShards" : 1,
+        "replicationFactor" : 1
+      },
+      "type" : "DATA",
+      "metadata" : { }
+    }, {
+      "id" : "nhtsa_recalls",
+      "createdAt" : "2017-01-31T19:15:07.106Z",
+      "searchClusterId" : "default",
+      "commitWithin" : 10000,
+      "solrParams" : {
+        "name" : "nhtsa_recalls",
+        "numShards" : 1,
+        "replicationFactor" : 1
+      },
+      "type" : "DATA",
+      "metadata" : { }
+    } ],
+    "indexPipelines" : [ {
+      "id" : "_system",
+      "stages" : [ {
+        "type" : "solr-index",
+        "id" : "22073e43-9588-4f5d-97ab-646086882105",
+        "enforceSchema" : true,
+        "dateFormats" : [ ],
+        "params" : [ ],
+        "bufferDocsForSolr" : false,
+        "type" : "solr-index",
+        "skip" : false,
+        "label" : "solr-index",
+        "secretSourceStageId" : "22073e43-9588-4f5d-97ab-646086882105"
+      } ],
+      "properties" : {
+        "secretSourcePipelineId" : "_system"
+      }
+    }, {
+      "id" : "default",
+      "stages" : [ {
+        "type" : "field-mapping",
+        "id" : "3aa0bf26-a440-4bfc-a738-afafb44872aa",
+        "mappings" : [ ],
+        "reservedFieldsMappingAllowed" : false,
+        "type" : "field-mapping",
+        "skip" : false,
+        "label" : "field-mapping",
+        "secretSourceStageId" : "3aa0bf26-a440-4bfc-a738-afafb44872aa"
+      }, {
+        "type" : "solr-dynamic-field-name-mapping",
+        "id" : "adeddaa3-66c3-4877-87d3-1960fb50155c",
+        "duplicateSingleValuedFields" : false,
+        "fieldsToExclude" : [ ],
+        "advancedTextFieldsIndexing" : true,
+        "maxTextLengthForAdvancedIndexing" : 100,
+        "type" : "solr-dynamic-field-name-mapping",
+        "skip" : false,
+        "label" : "solr-dynamic-field-name-mapping",
+        "secretSourceStageId" : "adeddaa3-66c3-4877-87d3-1960fb50155c"
+      }, {
+        "type" : "solr-index",
+        "id" : "0ec03819-d928-49bd-b530-4ea1c3d3b0e8",
+        "enforceSchema" : true,
+        "dateFormats" : [ ],
+        "params" : [ ],
+        "bufferDocsForSolr" : false,
+        "type" : "solr-index",
+        "skip" : false,
+        "label" : "solr-index",
+        "secretSourceStageId" : "0ec03819-d928-49bd-b530-4ea1c3d3b0e8"
+      } ],
+      "properties" : {
+        "secretSourcePipelineId" : "default"
+      }
+    }, {
+      "id" : "_lw_iwb_tmp_190977",
+      "stages" : [ {
+        "type" : "field-mapping",
+        "id" : "acb11912-1683-432b-987d-a0fe5c5ca646",
+        "mappings" : [ {
+          "source" : "MAKETXT",
+          "target" : "MAKE",
+          "operation" : "copy"
+        }, {
+          "source" : "MODELTXT",
+          "target" : "MODEL",
+          "operation" : "copy"
+        }, {
+          "source" : "YEARTXT",
+          "target" : "YEAR",
+          "operation" : "move"
+        }, {
+          "source" : "MFGNAME",
+          "target" : "manufacturer",
+          "operation" : "copy"
+        } ],
+        "reservedFieldsMappingAllowed" : false,
+        "type" : "field-mapping",
+        "skip" : false,
+        "label" : "field-mapping",
+        "secretSourceStageId" : "acb11912-1683-432b-987d-a0fe5c5ca646"
+      }, {
+        "type" : "solr-dynamic-field-name-mapping",
+        "id" : "85e8c1cc-ed9b-4ed5-a0a5-c2e0fd7a2f46",
+        "duplicateSingleValuedFields" : false,
+        "fieldsToExclude" : [ ],
+        "advancedTextFieldsIndexing" : true,
+        "maxTextLengthForAdvancedIndexing" : 100,
+        "type" : "solr-dynamic-field-name-mapping",
+        "skip" : true,
+        "label" : "solr-dynamic-field-name-mapping",
+        "secretSourceStageId" : "85e8c1cc-ed9b-4ed5-a0a5-c2e0fd7a2f46"
+      }, {
+        "type" : "solr-index",
+        "id" : "df6961cf-3ff0-480a-92e2-aec5c5d8aaf3",
+        "enforceSchema" : true,
+        "dateFormats" : [ ],
+        "params" : [ ],
+        "bufferDocsForSolr" : false,
+        "type" : "solr-index",
+        "skip" : false,
+        "label" : "solr-index",
+        "secretSourceStageId" : "df6961cf-3ff0-480a-92e2-aec5c5d8aaf3"
+      } ],
+      "properties" : {
+        "sourceId" : "nhtsa_recalls-default",
+        "lastModified" : "1485905068934",
+        "secretSourcePipelineId" : "_lw_iwb_tmp_190977"
+      }
+    }, {
+      "id" : "metadata_normalization",
+      "stages" : [ {
+        "type" : "tika-parser",
+        "id" : "conn_tika",
+        "includeImages" : true,
+        "flattenCompound" : false,
+        "addFailedDocs" : true,
+        "addOriginalContent" : false,
+        "contentField" : "_raw_content_",
+        "contentEncoding" : "binary",
+        "returnXml" : false,
+        "keepOriginalStructure" : false,
+        "extractHtmlLinks" : true,
+        "extractOtherLinks" : false,
+        "includeContentTypes" : [ ],
+        "excludeContentTypes" : [ ],
+        "zipBombCompressionRatio" : 200,
+        "type" : "tika-parser",
+        "skip" : false,
+        "label" : "tika-parser",
+        "secretSourceStageId" : "conn_tika"
+      }, {
+        "type" : "field-mapping",
+        "id" : "conn_mapping",
+        "mappings" : [ {
+          "source" : "Content-Encoding",
+          "target" : "contentEncoding_s",
+          "operation" : "move"
+        }, {
+          "source" : "Character-Set",
+          "target" : "characterSet_s",
+          "operation" : "move"
+        }, {
+          "source" : "Content-Length",
+          "target" : "contentLength_l",
+          "operation" : "move"
+        }, {
+          "source" : "FileSize",
+          "target" : "fileSize_l",
+          "operation" : "move"
+        }, {
+          "source" : "FileName",
+          "target" : "fileName_s",
+          "operation" : "move"
+        }, {
+          "source" : "Content-Type",
+          "target" : "mimeType_s",
+          "operation" : "move"
+        }, {
+          "source" : "MimeType",
+          "target" : "mimeType_s",
+          "operation" : "move"
+        }, {
+          "source" : "Title",
+          "target" : "title",
+          "operation" : "move"
+        }, {
+          "source" : "Description",
+          "target" : "description",
+          "operation" : "move"
+        }, {
+          "source" : "Subject",
+          "target" : "subject",
+          "operation" : "move"
+        }, {
+          "source" : "created",
+          "target" : "dateCreated_dt",
+          "operation" : "move"
+        }, {
+          "source" : "ContentCreated",
+          "target" : "dateCreated_dt",
+          "operation" : "move"
+        }, {
+          "source" : "meta:creation_date",
+          "target" : "dateCreated_dt",
+          "operation" : "move"
+        }, {
+          "source" : "Creation-Date",
+          "target" : "dateCreated_dt",
+          "operation" : "move"
+        }, {
+          "source" : "date",
+          "target" : "dateCreated_dt",
+          "operation" : "move"
+        }, {
+          "source" : "Author",
+          "target" : "author",
+          "operation" : "move"
+        }, {
+          "source" : "meta:author",
+          "target" : "author",
+          "operation" : "move"
+        }, {
+          "source" : "Contributor",
+          "target" : "author",
+          "operation" : "move"
+        }, {
+          "source" : "LastModifiedBy",
+          "target" : "author",
+          "operation" : "move"
+        }, {
+          "source" : "Last-Author",
+          "target" : "author",
+          "operation" : "move"
+        }, {
+          "source" : "fullname",
+          "target" : "author",
+          "operation" : "move"
+        }, {
+          "source" : "meta:last-author",
+          "target" : "author",
+          "operation" : "move"
+        }, {
+          "source" : "Last-Modified",
+          "target" : "last_modified",
+          "operation" : "move"
+        }, {
+          "source" : "fileLastModified",
+          "target" : "last_modified",
+          "operation" : "move"
+        }, {
+          "source" : "ContentLastModified",
+          "target" : "last_modified",
+          "operation" : "move"
+        }, {
+          "source" : "Last-Save-Date",
+          "target" : "last_modified",
+          "operation" : "move"
+        }, {
+          "source" : "fullText",
+          "target" : "content_txt",
+          "operation" : "move"
+        }, {
+          "source" : "plainTextContent",
+          "target" : "content_txt",
+          "operation" : "move"
+        }, {
+          "source" : "plainTextMessageContent",
+          "target" : "content_txt",
+          "operation" : "move"
+        }, {
+          "source" : "body",
+          "target" : "content_txt",
+          "operation" : "move"
+        }, {
+          "source" : "content",
+          "target" : "content_txt",
+          "operation" : "move"
+        }, {
+          "source" : "keyword",
+          "target" : "keywords",
+          "operation" : "move"
+        }, {
+          "source" : "Keywords",
+          "target" : "keywords",
+          "operation" : "move"
+        }, {
+          "source" : "messageSubject",
+          "target" : "title",
+          "operation" : "move"
+        }, {
+          "source" : "name",
+          "target" : "title",
+          "operation" : "move"
+        }, {
+          "source" : "Page-Count",
+          "target" : "pageCount_i",
+          "operation" : "move"
+        }, {
+          "source" : "PageCount",
+          "target" : "pageCount_i",
+          "operation" : "move"
+        }, {
+          "source" : "Slide-Count",
+          "target" : "pageCount_i",
+          "operation" : "move"
+        }, {
+          "source" : "Slides",
+          "target" : "pageCount_i",
+          "operation" : "move"
+        }, {
+          "source" : "xmpTPg:NPages",
+          "target" : "pageCount_i",
+          "operation" : "move"
+        }, {
+          "source" : "parsing_time",
+          "target" : "parsing_time_l",
+          "operation" : "move"
+        }, {
+          "source" : "parsing",
+          "target" : "parsing_s",
+          "operation" : "move"
+        }, {
+          "source" : "Comments",
+          "target" : "comments",
+          "operation" : "move"
+        }, {
+          "source" : "resourceName",
+          "target" : "resourcename_s",
+          "operation" : "move"
+        }, {
+          "source" : "resource_name",
+          "target" : "resourcename_s",
+          "operation" : "move"
+        }, {
+          "source" : "Content-Location",
+          "target" : "url",
+          "operation" : "move"
+        }, {
+          "source" : "meta:character-count",
+          "target" : "character-count_i",
+          "operation" : "move"
+        }, {
+          "source" : "Word-Count",
+          "target" : "wordCount_i",
+          "operation" : "move"
+        }, {
+          "source" : "type",
+          "target" : "type_s",
+          "operation" : "move"
+        }, {
+          "source" : "X-Parsed-By",
+          "target" : "xParsedBy_ss",
+          "operation" : "move"
+        }, {
+          "source" : "body.links.anchor",
+          "target" : "body_links_anchor_ss",
+          "operation" : "move"
+        }, {
+          "source" : "body.links.params.alt",
+          "target" : "body_links_params_alt_ss",
+          "operation" : "move"
+        }, {
+          "source" : "body.links.params.type",
+          "target" : "body_links_params_type_ss",
+          "operation" : "move"
+        }, {
+          "source" : "body.links.title",
+          "target" : "body_links_title_ss",
+          "operation" : "move"
+        }, {
+          "source" : "body.links.targetUri",
+          "target" : "body_links_targetUri_ss",
+          "operation" : "move"
+        }, {
+          "source" : "Brightness Value",
+          "target" : "Brightness_Value_ss",
+          "operation" : "move"
+        }, {
+          "source" : "svn:eol-style",
+          "target" : "svn_eol_style_s",
+          "operation" : "move"
+        }, {
+          "source" : "svn:keywords",
+          "target" : "svn_keywords",
+          "operation" : "move"
+        }, {
+          "source" : "svn:last-author",
+          "target" : "author",
+          "operation" : "move"
+        }, {
+          "source" : "svn:last-change-date",
+          "target" : "last_modified",
+          "operation" : "move"
+        }, {
+          "source" : "svn:last-change-revision",
+          "target" : "svn_last_change_revision_s",
+          "operation" : "move"
+        }, {
+          "source" : "svn:mergeinfo",
+          "target" : "svn_mergeinfo_txt",
+          "operation" : "move"
+        }, {
+          "source" : "svn:mime-type",
+          "target" : "svn_mime_type_ss",
+          "operation" : "move"
+        }, {
+          "source" : "/(.*)_[isltbfd]s?/",
+          "operation" : "keep"
+        }, {
+          "source" : "/(.*)_txt/",
+          "operation" : "keep"
+        }, {
+          "source" : "/(.*)_en/",
+          "operation" : "keep"
+        }, {
+          "source" : "/(.*)_dts?/",
+          "operation" : "keep"
+        }, {
+          "source" : "/(.*)_t[ilfd]/",
+          "operation" : "keep"
+        }, {
+          "source" : "/(.*)_p/",
+          "operation" : "keep"
+        }, {
+          "source" : "/(.*)_c/",
+          "operation" : "keep"
+        }, {
+          "source" : "/(.*)_coordinate/",
+          "operation" : "keep"
+        }, {
+          "source" : "/attr_(.*)/",
+          "operation" : "keep"
+        }, {
+          "source" : "/random_(.*)/",
+          "operation" : "keep"
+        }, {
+          "source" : "/ignored_(.*)/",
+          "operation" : "keep"
+        } ],
+        "reservedFieldsMappingAllowed" : false,
+        "type" : "field-mapping",
+        "skip" : false,
+        "label" : "field-mapping",
+        "secretSourceStageId" : "conn_mapping"
+      }, {
+        "type" : "lang-detect",
+        "id" : "conn_language_detection",
+        "source" : [ "content", "title" ],
+        "outputType" : "document",
+        "outputKey" : "languages",
+        "documentPostfix" : "_lang",
+        "type" : "lang-detect",
+        "skip" : false,
+        "label" : "lang-detect",
+        "secretSourceStageId" : "conn_language_detection"
+      }, {
+        "type" : "solr-dynamic-field-name-mapping",
+        "id" : "dyn-mapping-default",
+        "duplicateSingleValuedFields" : false,
+        "fieldsToExclude" : [ ],
+        "advancedTextFieldsIndexing" : true,
+        "maxTextLengthForAdvancedIndexing" : 100,
+        "type" : "solr-dynamic-field-name-mapping",
+        "skip" : false,
+        "label" : "solr-dynamic-field-name-mapping",
+        "secretSourceStageId" : "dyn-mapping-default"
+      }, {
+        "type" : "solr-index",
+        "id" : "solr-default",
+        "enforceSchema" : true,
+        "dateFormats" : [ ],
+        "params" : [ ],
+        "bufferDocsForSolr" : false,
+        "unmapped" : {
+          "source" : "/(^.*)$/",
+          "target" : "$1_txt",
+          "operation" : "move"
+        },
+        "type" : "solr-index",
+        "skip" : false,
+        "label" : "solr-index",
+        "secretSourceStageId" : "solr-default"
+      } ],
+      "properties" : {
+        "secretSourcePipelineId" : "metadata_normalization"
+      }
+    }, {
+      "id" : "_lw_iwb_tmp_527614",
+      "stages" : [ {
+        "type" : "field-mapping",
+        "id" : "9e815ab2-861f-42f3-8ccb-01e89088e5f5",
+        "mappings" : [ ],
+        "reservedFieldsMappingAllowed" : false,
+        "type" : "field-mapping",
+        "skip" : false,
+        "label" : "field-mapping",
+        "secretSourceStageId" : "9e815ab2-861f-42f3-8ccb-01e89088e5f5"
+      }, {
+        "type" : "solr-dynamic-field-name-mapping",
+        "id" : "28af4abb-0c0d-4b6e-8ef1-6ff3593dbc4d",
+        "duplicateSingleValuedFields" : false,
+        "fieldsToExclude" : [ ],
+        "advancedTextFieldsIndexing" : true,
+        "maxTextLengthForAdvancedIndexing" : 100,
+        "type" : "solr-dynamic-field-name-mapping",
+        "skip" : false,
+        "label" : "solr-dynamic-field-name-mapping",
+        "secretSourceStageId" : "28af4abb-0c0d-4b6e-8ef1-6ff3593dbc4d"
+      }, {
+        "type" : "solr-index",
+        "id" : "73d4d768-0e44-49bb-a7fb-76abfcb5d26e",
+        "enforceSchema" : true,
+        "dateFormats" : [ ],
+        "params" : [ ],
+        "bufferDocsForSolr" : false,
+        "type" : "solr-index",
+        "skip" : false,
+        "label" : "solr-index",
+        "secretSourceStageId" : "73d4d768-0e44-49bb-a7fb-76abfcb5d26e"
+      } ],
+      "properties" : {
+        "sourceId" : "nhtsa_complaints-default",
+        "lastModified" : "1485894823497",
+        "secretSourcePipelineId" : "_lw_iwb_tmp_527614"
+      }
+    }, {
+      "id" : "_signals_ingest",
+      "stages" : [ {
+        "type" : "signal-formatter",
+        "id" : "ingest-signals",
+        "flatten" : true,
+        "allowedTypes" : [ ],
+        "undefinedType" : "general",
+        "timestampLocale" : "en-US",
+        "type" : "signal-formatter",
+        "skip" : false,
+        "label" : "signal-formatter",
+        "secretSourceStageId" : "ingest-signals"
+      }, {
+        "type" : "field-mapping",
+        "id" : "mapping-signals",
+        "mappings" : [ {
+          "source" : "type",
+          "target" : "type_s",
+          "operation" : "move"
+        }, {
+          "source" : "flag",
+          "target" : "flag_s",
+          "operation" : "move"
+        }, {
+          "source" : "params.flag",
+          "target" : "flag_s",
+          "operation" : "move"
+        }, {
+          "source" : "timestamp",
+          "target" : "timestamp_tdt",
+          "operation" : "move"
+        }, {
+          "source" : "params.count",
+          "target" : "count_i",
+          "operation" : "move"
+        }, {
+          "source" : "params.weight",
+          "target" : "weight_d",
+          "operation" : "move"
+        }, {
+          "source" : "params.query",
+          "target" : "query_s",
+          "operation" : "copy"
+        }, {
+          "source" : "params.query",
+          "target" : "query_t",
+          "operation" : "move"
+        }, {
+          "source" : "params.docId",
+          "target" : "doc_id_s",
+          "operation" : "move"
+        }, {
+          "source" : "params.userId",
+          "target" : "user_id_s",
+          "operation" : "move"
+        }, {
+          "source" : "params.sessionId",
+          "target" : "session_id_s",
+          "operation" : "move"
+        }, {
+          "source" : "params.filterQueries",
+          "target" : "filters_s",
+          "operation" : "move"
+        }, {
+          "source" : "/params\\.(.*)(?<!_.{1,2})$/",
+          "target" : "params.$1_s",
+          "operation" : "move"
+        } ],
+        "reservedFieldsMappingAllowed" : false,
+        "type" : "field-mapping",
+        "skip" : false,
+        "label" : "field-mapping",
+        "secretSourceStageId" : "mapping-signals"
+      }, {
+        "type" : "solr-index",
+        "id" : "solr-system",
+        "enforceSchema" : true,
+        "dateFormats" : [ ],
+        "params" : [ ],
+        "bufferDocsForSolr" : true,
+        "type" : "solr-index",
+        "skip" : false,
+        "label" : "solr-index",
+        "secretSourceStageId" : "solr-system"
+      } ],
+      "properties" : {
+        "secretSourcePipelineId" : "_signals_ingest"
+      }
+    }, {
+      "id" : "_lw_iwb_tmp_399508",
+      "stages" : [ {
+        "type" : "field-mapping",
+        "id" : "9e815ab2-861f-42f3-8ccb-01e89088e5f5",
+        "mappings" : [ {
+          "source" : "MAKETXT",
+          "target" : "MAKE",
+          "operation" : "copy"
+        }, {
+          "source" : "MODELTXT",
+          "target" : "MODEL",
+          "operation" : "copy"
+        }, {
+          "source" : "MFR_NAME",
+          "target" : "manufacturer",
+          "operation" : "copy"
+        }, {
+          "source" : "YEARTXT",
+          "target" : "YEAR",
+          "operation" : "move"
+        } ],
+        "reservedFieldsMappingAllowed" : false,
+        "type" : "field-mapping",
+        "skip" : false,
+        "label" : "field-mapping",
+        "secretSourceStageId" : "9e815ab2-861f-42f3-8ccb-01e89088e5f5"
+      }, {
+        "type" : "solr-dynamic-field-name-mapping",
+        "id" : "28af4abb-0c0d-4b6e-8ef1-6ff3593dbc4d",
+        "duplicateSingleValuedFields" : false,
+        "fieldsToExclude" : [ ],
+        "advancedTextFieldsIndexing" : true,
+        "maxTextLengthForAdvancedIndexing" : 100,
+        "type" : "solr-dynamic-field-name-mapping",
+        "skip" : true,
+        "label" : "solr-dynamic-field-name-mapping",
+        "secretSourceStageId" : "28af4abb-0c0d-4b6e-8ef1-6ff3593dbc4d"
+      }, {
+        "type" : "solr-index",
+        "id" : "73d4d768-0e44-49bb-a7fb-76abfcb5d26e",
+        "enforceSchema" : true,
+        "dateFormats" : [ ],
+        "params" : [ ],
+        "bufferDocsForSolr" : false,
+        "type" : "solr-index",
+        "skip" : false,
+        "label" : "solr-index",
+        "secretSourceStageId" : "73d4d768-0e44-49bb-a7fb-76abfcb5d26e"
+      } ],
+      "properties" : {
+        "sourceId" : "nhtsa_complaints-default",
+        "lastModified" : "1485897182522",
+        "secretSourcePipelineId" : "_lw_iwb_tmp_399508"
+      }
+    }, {
+      "id" : "nhtsa_complaints-default",
+      "stages" : [ {
+        "type" : "field-mapping",
+        "id" : "9e815ab2-861f-42f3-8ccb-01e89088e5f5",
+        "mappings" : [ {
+          "source" : "MAKETXT",
+          "target" : "MAKE",
+          "operation" : "copy"
+        }, {
+          "source" : "MODELTXT",
+          "target" : "MODEL",
+          "operation" : "copy"
+        }, {
+          "source" : "MFR_NAME",
+          "target" : "manufacturer",
+          "operation" : "copy"
+        }, {
+          "source" : "YEARTXT",
+          "target" : "YEAR",
+          "operation" : "move"
+        } ],
+        "reservedFieldsMappingAllowed" : false,
+        "type" : "field-mapping",
+        "skip" : false,
+        "label" : "field-mapping",
+        "secretSourceStageId" : "9e815ab2-861f-42f3-8ccb-01e89088e5f5"
+      }, {
+        "type" : "solr-dynamic-field-name-mapping",
+        "id" : "28af4abb-0c0d-4b6e-8ef1-6ff3593dbc4d",
+        "duplicateSingleValuedFields" : false,
+        "fieldsToExclude" : [ ],
+        "advancedTextFieldsIndexing" : true,
+        "maxTextLengthForAdvancedIndexing" : 100,
+        "type" : "solr-dynamic-field-name-mapping",
+        "skip" : true,
+        "label" : "solr-dynamic-field-name-mapping",
+        "secretSourceStageId" : "28af4abb-0c0d-4b6e-8ef1-6ff3593dbc4d"
+      }, {
+        "type" : "solr-index",
+        "id" : "73d4d768-0e44-49bb-a7fb-76abfcb5d26e",
+        "enforceSchema" : true,
+        "dateFormats" : [ ],
+        "params" : [ ],
+        "bufferDocsForSolr" : false,
+        "type" : "solr-index",
+        "skip" : false,
+        "label" : "solr-index",
+        "secretSourceStageId" : "73d4d768-0e44-49bb-a7fb-76abfcb5d26e"
+      } ],
+      "properties" : {
+        "secretSourcePipelineId" : "nhtsa_complaints-default"
+      }
+    }, {
+      "id" : "nhtsa_recalls-default",
+      "stages" : [ {
+        "type" : "field-mapping",
+        "id" : "acb11912-1683-432b-987d-a0fe5c5ca646",
+        "mappings" : [ {
+          "source" : "MAKETXT",
+          "target" : "MAKE",
+          "operation" : "copy"
+        }, {
+          "source" : "MODELTXT",
+          "target" : "MODEL",
+          "operation" : "copy"
+        }, {
+          "source" : "YEARTXT",
+          "target" : "YEAR",
+          "operation" : "move"
+        }, {
+          "source" : "MFGNAME",
+          "target" : "manufacturer",
+          "operation" : "copy"
+        } ],
+        "reservedFieldsMappingAllowed" : false,
+        "type" : "field-mapping",
+        "skip" : false,
+        "label" : "field-mapping",
+        "secretSourceStageId" : "acb11912-1683-432b-987d-a0fe5c5ca646"
+      }, {
+        "type" : "solr-dynamic-field-name-mapping",
+        "id" : "85e8c1cc-ed9b-4ed5-a0a5-c2e0fd7a2f46",
+        "duplicateSingleValuedFields" : false,
+        "fieldsToExclude" : [ ],
+        "advancedTextFieldsIndexing" : true,
+        "maxTextLengthForAdvancedIndexing" : 100,
+        "type" : "solr-dynamic-field-name-mapping",
+        "skip" : true,
+        "label" : "solr-dynamic-field-name-mapping",
+        "secretSourceStageId" : "85e8c1cc-ed9b-4ed5-a0a5-c2e0fd7a2f46"
+      }, {
+        "type" : "solr-index",
+        "id" : "df6961cf-3ff0-480a-92e2-aec5c5d8aaf3",
+        "enforceSchema" : true,
+        "dateFormats" : [ ],
+        "params" : [ ],
+        "bufferDocsForSolr" : false,
+        "type" : "solr-index",
+        "skip" : false,
+        "label" : "solr-index",
+        "secretSourceStageId" : "df6961cf-3ff0-480a-92e2-aec5c5d8aaf3"
+      } ],
+      "properties" : {
+        "secretSourcePipelineId" : "nhtsa_recalls-default"
+      }
+    } ],
+    "queryPipelines" : [ {
+      "id" : "related-items",
+      "stages" : [ {
+        "type" : "more-like-this",
+        "id" : "9c5a2d81-b52f-45b3-a8d1-f1e5563d2170",
+        "moreLikeThisFields" : [ ],
+        "useQueryParser" : true,
+        "mindf" : 2,
+        "maxdf" : 10000,
+        "minwl" : 3,
+        "docId" : "id",
+        "type" : "more-like-this",
+        "skip" : false,
+        "label" : "more-like-this",
+        "secretSourceStageId" : "9c5a2d81-b52f-45b3-a8d1-f1e5563d2170"
+      }, {
+        "type" : "solr-query",
+        "id" : "ca3cbc45-8853-4a98-8b7a-5dd6f9180737",
+        "allowedRequestHandlers" : [ ],
+        "httpMethod" : "POST",
+        "allowFederatedSearch" : false,
+        "type" : "solr-query",
+        "skip" : false,
+        "label" : "solr-query",
+        "secretSourceStageId" : "ca3cbc45-8853-4a98-8b7a-5dd6f9180737"
+      } ],
+      "properties" : {
+        "secretSourcePipelineId" : "related-items"
+      }
+    }, {
+      "id" : "_system",
+      "stages" : [ {
+        "type" : "solr-query",
+        "id" : "85979944-4b6b-46de-a4d2-3d73ea552389",
+        "allowedRequestHandlers" : [ ],
+        "httpMethod" : "POST",
+        "allowFederatedSearch" : false,
+        "type" : "solr-query",
+        "skip" : false,
+        "label" : "solr-query",
+        "secretSourceStageId" : "85979944-4b6b-46de-a4d2-3d73ea552389"
+      } ],
+      "properties" : {
+        "secretSourcePipelineId" : "_system"
+      }
+    }, {
+      "id" : "default",
+      "stages" : [ {
+        "type" : "recommendation",
+        "id" : "0c6303e1-3139-449e-8fe4-3717e38db5aa",
+        "numRecommendations" : 10,
+        "numSignals" : 100,
+        "aggrType" : "*",
+        "boostId" : "id",
+        "type" : "recommendation",
+        "skip" : false,
+        "label" : "recommendation",
+        "secretSourceStageId" : "0c6303e1-3139-449e-8fe4-3717e38db5aa"
+      }, {
+        "type" : "search-fields",
+        "id" : "6ce672ac-dce9-48e0-9f7c-8ef08fbbfed8",
+        "rows" : 10,
+        "start" : 0,
+        "queryFields" : [ ],
+        "returnFields" : [ "*", "score" ],
+        "type" : "search-fields",
+        "skip" : false,
+        "label" : "search-fields",
+        "secretSourceStageId" : "6ce672ac-dce9-48e0-9f7c-8ef08fbbfed8"
+      }, {
+        "type" : "facet",
+        "id" : "0df9ca27-34d2-4f1d-9c4a-df26d1dd5b06",
+        "fieldFacets" : [ ],
+        "type" : "facet",
+        "skip" : false,
+        "label" : "facet",
+        "secretSourceStageId" : "0df9ca27-34d2-4f1d-9c4a-df26d1dd5b06"
+      }, {
+        "type" : "solr-query",
+        "id" : "a9ca77c5-4af8-4f10-9fce-e2954dd0da29",
+        "allowedRequestHandlers" : [ ],
+        "httpMethod" : "POST",
+        "allowFederatedSearch" : false,
+        "type" : "solr-query",
+        "skip" : false,
+        "label" : "solr-query",
+        "secretSourceStageId" : "a9ca77c5-4af8-4f10-9fce-e2954dd0da29"
+      } ],
+      "properties" : {
+        "secretSourcePipelineId" : "default"
+      }
+    }, {
+      "id" : "_lw_qwb_tmp_13307984709340842",
+      "stages" : [ {
+        "type" : "recommendation",
+        "id" : "5b56582d-a0a6-41a5-afe3-541f36970ad8",
+        "numRecommendations" : 10,
+        "numSignals" : 100,
+        "aggrType" : "*",
+        "boostId" : "id",
+        "type" : "recommendation",
+        "skip" : false,
+        "label" : "recommendation",
+        "secretSourceStageId" : "5b56582d-a0a6-41a5-afe3-541f36970ad8"
+      }, {
+        "type" : "search-fields",
+        "id" : "25292d14-cced-47e6-85d5-fa6d44f8fa91",
+        "rows" : 10,
+        "start" : 0,
+        "queryFields" : [ ],
+        "returnFields" : [ "*", "score" ],
+        "type" : "search-fields",
+        "skip" : false,
+        "label" : "search-fields",
+        "secretSourceStageId" : "25292d14-cced-47e6-85d5-fa6d44f8fa91"
+      }, {
+        "type" : "facet",
+        "id" : "a69e7c96-41b2-4842-b22a-5787b9f9369c",
+        "fieldFacets" : [ ],
+        "type" : "facet",
+        "skip" : false,
+        "label" : "facet",
+        "secretSourceStageId" : "a69e7c96-41b2-4842-b22a-5787b9f9369c"
+      }, {
+        "type" : "solr-query",
+        "id" : "84fe127b-2feb-416a-a57b-f6bf9e543004",
+        "allowedRequestHandlers" : [ ],
+        "httpMethod" : "POST",
+        "allowFederatedSearch" : false,
+        "type" : "solr-query",
+        "skip" : false,
+        "label" : "solr-query",
+        "secretSourceStageId" : "84fe127b-2feb-416a-a57b-f6bf9e543004"
+      } ],
+      "properties" : {
+        "lastModified" : "1485894249",
+        "forSimulation" : "true",
+        "secretSourcePipelineId" : "_lw_qwb_tmp_13307984709340842"
+      }
+    }, {
+      "id" : "_lw_qwb_tmp_10517873499915957",
+      "stages" : [ {
+        "type" : "recommendation",
+        "id" : "5b56582d-a0a6-41a5-afe3-541f36970ad8",
+        "numRecommendations" : 10,
+        "numSignals" : 100,
+        "aggrType" : "*",
+        "boostId" : "id",
+        "type" : "recommendation",
+        "skip" : false,
+        "label" : "recommendation",
+        "secretSourceStageId" : "5b56582d-a0a6-41a5-afe3-541f36970ad8"
+      }, {
+        "type" : "search-fields",
+        "id" : "25292d14-cced-47e6-85d5-fa6d44f8fa91",
+        "rows" : 10,
+        "start" : 0,
+        "queryFields" : [ ],
+        "returnFields" : [ "*", "score" ],
+        "type" : "search-fields",
+        "skip" : false,
+        "label" : "search-fields",
+        "secretSourceStageId" : "25292d14-cced-47e6-85d5-fa6d44f8fa91"
+      }, {
+        "type" : "facet",
+        "id" : "a69e7c96-41b2-4842-b22a-5787b9f9369c",
+        "fieldFacets" : [ ],
+        "type" : "facet",
+        "skip" : false,
+        "label" : "facet",
+        "secretSourceStageId" : "a69e7c96-41b2-4842-b22a-5787b9f9369c"
+      }, {
+        "type" : "solr-query",
+        "id" : "84fe127b-2feb-416a-a57b-f6bf9e543004",
+        "allowedRequestHandlers" : [ ],
+        "httpMethod" : "POST",
+        "allowFederatedSearch" : false,
+        "type" : "solr-query",
+        "skip" : false,
+        "label" : "solr-query",
+        "secretSourceStageId" : "84fe127b-2feb-416a-a57b-f6bf9e543004"
+      } ],
+      "properties" : {
+        "lastModified" : "1485894511",
+        "forSimulation" : "true",
+        "secretSourcePipelineId" : "_lw_qwb_tmp_10517873499915957"
+      }
+    }, {
+      "id" : "nhtsa_complaints-default",
+      "stages" : [ {
+        "type" : "recommendation",
+        "id" : "5b56582d-a0a6-41a5-afe3-541f36970ad8",
+        "numRecommendations" : 10,
+        "numSignals" : 100,
+        "aggrType" : "*",
+        "boostId" : "id",
+        "type" : "recommendation",
+        "skip" : false,
+        "label" : "recommendation",
+        "secretSourceStageId" : "5b56582d-a0a6-41a5-afe3-541f36970ad8"
+      }, {
+        "type" : "search-fields",
+        "id" : "25292d14-cced-47e6-85d5-fa6d44f8fa91",
+        "rows" : 10,
+        "start" : 0,
+        "queryFields" : [ ],
+        "returnFields" : [ "*", "score" ],
+        "type" : "search-fields",
+        "skip" : false,
+        "label" : "search-fields",
+        "secretSourceStageId" : "25292d14-cced-47e6-85d5-fa6d44f8fa91"
+      }, {
+        "type" : "facet",
+        "id" : "a69e7c96-41b2-4842-b22a-5787b9f9369c",
+        "fieldFacets" : [ ],
+        "type" : "facet",
+        "skip" : false,
+        "label" : "facet",
+        "secretSourceStageId" : "a69e7c96-41b2-4842-b22a-5787b9f9369c"
+      }, {
+        "type" : "solr-query",
+        "id" : "84fe127b-2feb-416a-a57b-f6bf9e543004",
+        "allowedRequestHandlers" : [ ],
+        "httpMethod" : "POST",
+        "allowFederatedSearch" : false,
+        "type" : "solr-query",
+        "skip" : false,
+        "label" : "solr-query",
+        "secretSourceStageId" : "84fe127b-2feb-416a-a57b-f6bf9e543004"
+      } ],
+      "properties" : {
+        "secretSourcePipelineId" : "nhtsa_complaints-default"
+      }
+    }, {
+      "id" : "nhtsa_recalls-default",
+      "stages" : [ {
+        "type" : "recommendation",
+        "id" : "0d168498-be1a-4936-9981-0b605a710087",
+        "numRecommendations" : 10,
+        "numSignals" : 100,
+        "aggrType" : "*",
+        "boostId" : "id",
+        "type" : "recommendation",
+        "skip" : false,
+        "label" : "recommendation",
+        "secretSourceStageId" : "0d168498-be1a-4936-9981-0b605a710087"
+      }, {
+        "type" : "search-fields",
+        "id" : "257f4391-b690-4d3e-a2ef-70fe56c9ae0c",
+        "rows" : 10,
+        "start" : 0,
+        "queryFields" : [ ],
+        "returnFields" : [ "*", "score" ],
+        "type" : "search-fields",
+        "skip" : false,
+        "label" : "search-fields",
+        "secretSourceStageId" : "257f4391-b690-4d3e-a2ef-70fe56c9ae0c"
+      }, {
+        "type" : "facet",
+        "id" : "7529f144-26c9-483a-8166-c97d490de68b",
+        "fieldFacets" : [ ],
+        "type" : "facet",
+        "skip" : false,
+        "label" : "facet",
+        "secretSourceStageId" : "7529f144-26c9-483a-8166-c97d490de68b"
+      }, {
+        "type" : "solr-query",
+        "id" : "62ad5c5e-04f6-466c-b798-753a48d73228",
+        "allowedRequestHandlers" : [ ],
+        "httpMethod" : "POST",
+        "allowFederatedSearch" : false,
+        "type" : "solr-query",
+        "skip" : false,
+        "label" : "solr-query",
+        "secretSourceStageId" : "62ad5c5e-04f6-466c-b798-753a48d73228"
+      } ],
+      "properties" : {
+        "secretSourcePipelineId" : "nhtsa_recalls-default"
+      }
+    } ],
+    "searchClusters" : [ {
+      "id" : "default",
+      "connectString" : "localhost:9983/lwfusion/3.0.0/solr",
+      "zkClientTimeout" : 30000,
+      "zkConnectTimeout" : 60000,
+      "cloud" : true,
+      "bufferFlushInterval" : 1000,
+      "bufferSize" : 100,
+      "concurrency" : 10,
+      "validateCluster" : true
+    } ],
+    "schedules" : [ {
+      "id" : "hourlyMetricsRollup-gauges",
+      "creatorType" : "system",
+      "creatorId" : "MetricSchedulesRegistrar",
+      "createTime" : "2017-01-31T19:13:02.142Z",
+      "startTime" : "2017-01-31T19:13:02.142Z",
+      "repeatUnit" : "HOUR",
+      "interval" : 1,
+      "active" : false,
+      "callParams" : {
+        "uri" : "service://aggregator/jobs/system_metrics/hourlyMetricsRollup-gauges",
+        "method" : "post",
+        "queryParams" : { },
+        "headers" : { }
+      }
+    }, {
+      "id" : "dailyMetricsRollup-meters",
+      "creatorType" : "system",
+      "creatorId" : "MetricSchedulesRegistrar",
+      "createTime" : "2017-01-31T19:13:02.218Z",
+      "startTime" : "2017-01-31T19:13:02.218Z",
+      "repeatUnit" : "DAY",
+      "interval" : 1,
+      "active" : false,
+      "callParams" : {
+        "uri" : "service://aggregator/jobs/system_metrics/dailyMetricsRollup-meters",
+        "method" : "post",
+        "queryParams" : { },
+        "headers" : { }
+      }
+    }, {
+      "id" : "click-signals-default",
+      "creatorType" : "system",
+      "creatorId" : "DefaultClickSignalJobScheduleRegistrar",
+      "createTime" : "2017-01-31T19:09:02.053Z",
+      "startTime" : "2017-01-31T19:09:02.053Z",
+      "repeatUnit" : "MINUTE",
+      "interval" : 2,
+      "active" : true,
+      "callParams" : {
+        "uri" : "service://aggregator/jobs/default_signals/click-signals-default",
+        "method" : "post",
+        "queryParams" : { },
+        "headers" : { }
+      }
+    }, {
+      "id" : "dailyMetricsRollup-timers",
+      "creatorType" : "system",
+      "creatorId" : "MetricSchedulesRegistrar",
+      "createTime" : "2017-01-31T19:13:02.233Z",
+      "startTime" : "2017-01-31T19:13:02.233Z",
+      "repeatUnit" : "DAY",
+      "interval" : 1,
+      "active" : false,
+      "callParams" : {
+        "uri" : "service://aggregator/jobs/system_metrics/dailyMetricsRollup-timers",
+        "method" : "post",
+        "queryParams" : { },
+        "headers" : { }
+      }
+    }, {
+      "id" : "dailyMetricsRollup-histograms",
+      "creatorType" : "system",
+      "creatorId" : "MetricSchedulesRegistrar",
+      "createTime" : "2017-01-31T19:13:02.204Z",
+      "startTime" : "2017-01-31T19:13:02.204Z",
+      "repeatUnit" : "DAY",
+      "interval" : 1,
+      "active" : false,
+      "callParams" : {
+        "uri" : "service://aggregator/jobs/system_metrics/dailyMetricsRollup-histograms",
+        "method" : "post",
+        "queryParams" : { },
+        "headers" : { }
+      }
+    }, {
+      "id" : "dailyMetricsRollup-gauges",
+      "creatorType" : "system",
+      "creatorId" : "MetricSchedulesRegistrar",
+      "createTime" : "2017-01-31T19:13:02.191Z",
+      "startTime" : "2017-01-31T19:13:02.191Z",
+      "repeatUnit" : "DAY",
+      "interval" : 1,
+      "active" : false,
+      "callParams" : {
+        "uri" : "service://aggregator/jobs/system_metrics/dailyMetricsRollup-gauges",
+        "method" : "post",
+        "queryParams" : { },
+        "headers" : { }
+      }
+    }, {
+      "id" : "click-signals-nhtsa_recalls",
+      "creatorType" : "system",
+      "creatorId" : "SignalResource_$$_jvstdcb_8",
+      "createTime" : "2017-01-31T19:15:20.301Z",
+      "startTime" : "2017-01-31T19:15:20.301Z",
+      "repeatUnit" : "MINUTE",
+      "interval" : 2,
+      "active" : true,
+      "callParams" : {
+        "uri" : "service://aggregator/jobs/nhtsa_recalls_signals/click-signals-default",
+        "method" : "post",
+        "queryParams" : { },
+        "headers" : { }
+      }
+    }, {
+      "id" : "hourlyMetricsRollup-timers",
+      "creatorType" : "system",
+      "creatorId" : "MetricSchedulesRegistrar",
+      "createTime" : "2017-01-31T19:13:02.168Z",
+      "startTime" : "2017-01-31T19:13:02.168Z",
+      "repeatUnit" : "HOUR",
+      "interval" : 1,
+      "active" : false,
+      "callParams" : {
+        "uri" : "service://aggregator/jobs/system_metrics/hourlyMetricsRollup-timers",
+        "method" : "post",
+        "queryParams" : { },
+        "headers" : { }
+      }
+    }, {
+      "id" : "hourlyMetricsRollup-histograms",
+      "creatorType" : "system",
+      "creatorId" : "MetricSchedulesRegistrar",
+      "createTime" : "2017-01-31T19:13:02.150Z",
+      "startTime" : "2017-01-31T19:13:02.150Z",
+      "repeatUnit" : "HOUR",
+      "interval" : 1,
+      "active" : false,
+      "callParams" : {
+        "uri" : "service://aggregator/jobs/system_metrics/hourlyMetricsRollup-histograms",
+        "method" : "post",
+        "queryParams" : { },
+        "headers" : { }
+      }
+    }, {
+      "id" : "click-signals-nhtsa_complaints",
+      "creatorType" : "system",
+      "creatorId" : "SignalResource_$$_jvstdcb_8",
+      "createTime" : "2017-01-31T20:23:56.893Z",
+      "startTime" : "2017-01-31T20:23:56.893Z",
+      "repeatUnit" : "MINUTE",
+      "interval" : 2,
+      "active" : true,
+      "callParams" : {
+        "uri" : "service://aggregator/jobs/nhtsa_complaints_signals/click-signals-default",
+        "method" : "post",
+        "queryParams" : { },
+        "headers" : { }
+      }
+    }, {
+      "id" : "delete-old-metrics",
+      "creatorType" : "system",
+      "creatorId" : "MetricSchedulesRegistrar",
+      "createTime" : "2017-01-31T19:13:02.249Z",
+      "startTime" : "2017-01-31T19:13:02.249Z",
+      "repeatUnit" : "WEEK",
+      "interval" : 1,
+      "active" : false,
+      "callParams" : {
+        "uri" : "solr://system_metrics/update",
+        "method" : "get",
+        "queryParams" : {
+          "wt" : "json",
+          "stream.body" : "<delete><query>timestamp_tdt:[* TO NOW-13MONTHS]</query></delete>"
+        },
+        "headers" : { }
+      }
+    }, {
+      "id" : "dailyMetricsRollup-counters",
+      "creatorType" : "system",
+      "creatorId" : "MetricSchedulesRegistrar",
+      "createTime" : "2017-01-31T19:13:02.179Z",
+      "startTime" : "2017-01-31T19:13:02.179Z",
+      "repeatUnit" : "DAY",
+      "interval" : 1,
+      "active" : false,
+      "callParams" : {
+        "uri" : "service://aggregator/jobs/system_metrics/dailyMetricsRollup-counters",
+        "method" : "post",
+        "queryParams" : { },
+        "headers" : { }
+      }
+    }, {
+      "id" : "delete-old-audit-logs",
+      "creatorType" : "system",
+      "creatorId" : "DefaultAuditLogCleanupScheduleRegistrar",
+      "createTime" : "2017-01-31T19:08:58.882Z",
+      "startTime" : "2017-01-31T19:08:58.882Z",
+      "repeatUnit" : "MONTH",
+      "interval" : 1,
+      "active" : true,
+      "callParams" : {
+        "uri" : "solr://audit_logs/update",
+        "method" : "get",
+        "queryParams" : {
+          "wt" : "json",
+          "stream.body" : "<delete><query>timestamp_tdt:[* TO NOW-30DAYS] OR timestamp_dt:[* TO NOW-30DAYS]</query></delete>"
+        },
+        "headers" : { }
+      }
+    }, {
+      "id" : "hourlyMetricsRollup-counters",
+      "creatorType" : "system",
+      "creatorId" : "MetricSchedulesRegistrar",
+      "createTime" : "2017-01-31T19:13:02.131Z",
+      "startTime" : "2017-01-31T19:13:02.131Z",
+      "repeatUnit" : "HOUR",
+      "interval" : 1,
+      "active" : false,
+      "callParams" : {
+        "uri" : "service://aggregator/jobs/system_metrics/hourlyMetricsRollup-counters",
+        "method" : "post",
+        "queryParams" : { },
+        "headers" : { }
+      }
+    }, {
+      "id" : "hourlyMetricsRollup-meters",
+      "creatorType" : "system",
+      "creatorId" : "MetricSchedulesRegistrar",
+      "createTime" : "2017-01-31T19:13:02.158Z",
+      "startTime" : "2017-01-31T19:13:02.158Z",
+      "repeatUnit" : "HOUR",
+      "interval" : 1,
+      "active" : false,
+      "callParams" : {
+        "uri" : "service://aggregator/jobs/system_metrics/hourlyMetricsRollup-meters",
+        "method" : "post",
+        "queryParams" : { },
+        "headers" : { }
+      }
+    }, {
+      "id" : "delete-old-logs",
+      "creatorType" : "system",
+      "creatorId" : "DefaultLogCleanupScheduleRegistrar",
+      "createTime" : "2017-01-31T19:09:01.969Z",
+      "startTime" : "2017-01-31T19:09:01.969Z",
+      "repeatUnit" : "MONTH",
+      "interval" : 1,
+      "active" : true,
+      "callParams" : {
+        "uri" : "solr://logs/update",
+        "method" : "get",
+        "queryParams" : {
+          "wt" : "json",
+          "stream.body" : "<delete><query>timestamp_tdt:[* TO NOW-30DAYS] OR timestamp_dt:[* TO NOW-30DAYS]</query></delete>"
+        },
+        "headers" : { }
+      }
+    } ],
+    "aggregations" : [ {
+      "id" : "hourlyMetricsRollup-gauges",
+      "groupingFields" : [ "name_s", "server_s" ],
+      "signalTypes" : [ "gauge" ],
+      "selectQuery" : "value_d:*",
+      "timeRange" : "[NOW-1MONTH TO NOW-1DAY]",
+      "outputPipeline" : "default",
+      "outputCollection" : "system_metrics",
+      "sourceRemove" : true,
+      "sourceCatchup" : false,
+      "outputRollup" : false,
+      "aggregates" : [ {
+        "type" : "max",
+        "sourceFields" : [ "value_d" ],
+        "targetField" : "max_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "min",
+        "sourceFields" : [ "value_d" ],
+        "targetField" : "min_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "value_d" ],
+        "targetField" : "mean_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "count",
+        "sourceFields" : [ "value_d" ],
+        "targetField" : "count_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "sum",
+        "sourceFields" : [ "value_d" ],
+        "targetField" : "sum_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      } ],
+      "statsFields" : [ "aggr_count_i", "count_i", "position_i", "weight_d" ]
+    }, {
+      "id" : "dailyMetricsRollup-meters",
+      "groupingFields" : [ "name_s", "server_s" ],
+      "signalTypes" : [ "meter" ],
+      "selectQuery" : "*:*",
+      "timeRange" : "[NOW-13MONTHS TO NOW-1MONTH]",
+      "outputPipeline" : "default",
+      "outputCollection" : "system_metrics",
+      "sourceRemove" : true,
+      "sourceCatchup" : false,
+      "outputRollup" : false,
+      "aggregates" : [ {
+        "type" : "max",
+        "sourceFields" : [ "max_d" ],
+        "targetField" : "max_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "min",
+        "sourceFields" : [ "min_d" ],
+        "targetField" : "min_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "max",
+        "sourceFields" : [ "count_l" ],
+        "targetField" : "count_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "sum",
+        "sourceFields" : [ "count_increment_l" ],
+        "targetField" : "count_increment_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "mean_mean_rate_d" ],
+        "targetField" : "mean_mean_rate_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      } ],
+      "statsFields" : [ "aggr_count_i", "count_i", "position_i", "weight_d" ]
+    }, {
+      "id" : "click-signals-default",
+      "groupingFields" : [ "query_s", "doc_id_s" ],
+      "signalTypes" : [ "click" ],
+      "selectQuery" : "*:*",
+      "outputPipeline" : "_system",
+      "rollupPipeline" : "_system",
+      "rollupAggregator" : "click",
+      "aggregator" : "click",
+      "sourceRemove" : false,
+      "sourceCatchup" : true,
+      "outputRollup" : true,
+      "statsFields" : [ "aggr_count_i", "count_i", "position_i", "weight_d" ]
+    }, {
+      "id" : "dailyMetricsRollup-gauges",
+      "groupingFields" : [ "name_s", "server_s" ],
+      "signalTypes" : [ "gauge" ],
+      "selectQuery" : "value_d:*",
+      "timeRange" : "[NOW-13MONTHS TO NOW-1MONTH]",
+      "outputPipeline" : "default",
+      "outputCollection" : "system_metrics",
+      "sourceRemove" : true,
+      "sourceCatchup" : false,
+      "outputRollup" : false,
+      "aggregates" : [ {
+        "type" : "max",
+        "sourceFields" : [ "max_d" ],
+        "targetField" : "max_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "min",
+        "sourceFields" : [ "min_d" ],
+        "targetField" : "min_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "expr",
+        "sourceFields" : [ "mean_d", "count_d", "sum_d" ],
+        "targetField" : "mean_d",
+        "mapper" : false,
+        "parameters" : [ {
+          "key" : "associative",
+          "value" : "true"
+        }, {
+          "key" : "expr",
+          "value" : "sum_d / count_d"
+        } ]
+      }, {
+        "type" : "sum",
+        "sourceFields" : [ "count_d" ],
+        "targetField" : "count_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "sum",
+        "sourceFields" : [ "sum_d" ],
+        "targetField" : "sum_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      } ],
+      "statsFields" : [ "aggr_count_i", "count_i", "position_i", "weight_d" ]
+    }, {
+      "id" : "dailyMetricsRollup-histograms",
+      "groupingFields" : [ "name_s", "server_s" ],
+      "signalTypes" : [ "histogram" ],
+      "selectQuery" : "*:*",
+      "timeRange" : "[NOW-13MONTHS TO NOW-1MONTH]",
+      "outputPipeline" : "default",
+      "outputCollection" : "system_metrics",
+      "sourceRemove" : true,
+      "sourceCatchup" : false,
+      "outputRollup" : false,
+      "aggregates" : [ {
+        "type" : "max",
+        "sourceFields" : [ "max_d" ],
+        "targetField" : "max_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "min",
+        "sourceFields" : [ "min_d" ],
+        "targetField" : "min_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "max",
+        "sourceFields" : [ "count_l" ],
+        "targetField" : "count_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "sum",
+        "sourceFields" : [ "count_increment_l" ],
+        "targetField" : "count_increment_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p50_d" ],
+        "targetField" : "p50_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p75_d" ],
+        "targetField" : "p75_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p98_d" ],
+        "targetField" : "p98_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p99_d" ],
+        "targetField" : "p99_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p999_d" ],
+        "targetField" : "p999_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "mean_mean_rate_d" ],
+        "targetField" : "mean_mean_rate_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "mean_mean_duration_d" ],
+        "targetField" : "mean_mean_duration_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "quantiles",
+        "sourceFields" : [ "quantiles_ds" ],
+        "targetField" : "quantiles_ds",
+        "mapper" : false,
+        "parameters" : [ {
+          "key" : "multiValued",
+          "value" : "true"
+        } ]
+      }, {
+        "type" : "quantiles",
+        "sourceFields" : [ "quantiles_ls" ],
+        "targetField" : "quantiles_ls",
+        "mapper" : false,
+        "parameters" : [ {
+          "key" : "multiValued",
+          "value" : "true"
+        } ]
+      } ],
+      "statsFields" : [ "aggr_count_i", "count_i", "position_i", "weight_d" ]
+    }, {
+      "id" : "dailyMetricsRollup-timers",
+      "groupingFields" : [ "name_s", "server_s" ],
+      "signalTypes" : [ "timer" ],
+      "selectQuery" : "*:*",
+      "timeRange" : "[NOW-13MONTHS TO NOW-1MONTH]",
+      "outputPipeline" : "default",
+      "outputCollection" : "system_metrics",
+      "sourceRemove" : true,
+      "sourceCatchup" : false,
+      "outputRollup" : false,
+      "aggregates" : [ {
+        "type" : "max",
+        "sourceFields" : [ "max_d" ],
+        "targetField" : "max_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "min",
+        "sourceFields" : [ "min_d" ],
+        "targetField" : "min_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "max",
+        "sourceFields" : [ "count_l" ],
+        "targetField" : "count_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "sum",
+        "sourceFields" : [ "count_increment_l" ],
+        "targetField" : "count_increment_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p50_d" ],
+        "targetField" : "p50_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p75_d" ],
+        "targetField" : "p75_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p98_d" ],
+        "targetField" : "p98_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p99_d" ],
+        "targetField" : "p99_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p999_d" ],
+        "targetField" : "p999_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "mean_mean_rate_d" ],
+        "targetField" : "mean_mean_rate_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "mean_mean_duration_d" ],
+        "targetField" : "mean_mean_duration_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "quantiles",
+        "sourceFields" : [ "quantiles_ds" ],
+        "targetField" : "quantiles_ds",
+        "mapper" : false,
+        "parameters" : [ {
+          "key" : "multiValued",
+          "value" : "true"
+        } ]
+      }, {
+        "type" : "quantiles",
+        "sourceFields" : [ "quantiles_ls" ],
+        "targetField" : "quantiles_ls",
+        "mapper" : false,
+        "parameters" : [ {
+          "key" : "multiValued",
+          "value" : "true"
+        } ]
+      } ],
+      "statsFields" : [ "aggr_count_i", "count_i", "position_i", "weight_d" ]
+    }, {
+      "id" : "hourlyMetricsRollup-timers",
+      "groupingFields" : [ "name_s", "server_s" ],
+      "signalTypes" : [ "timer" ],
+      "selectQuery" : "*:*",
+      "timeRange" : "[NOW-1MONTH TO NOW-1DAY]",
+      "outputPipeline" : "default",
+      "outputCollection" : "system_metrics",
+      "sourceRemove" : true,
+      "sourceCatchup" : false,
+      "outputRollup" : false,
+      "aggregates" : [ {
+        "type" : "max",
+        "sourceFields" : [ "max_d" ],
+        "targetField" : "max_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "min",
+        "sourceFields" : [ "min_d" ],
+        "targetField" : "min_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "max",
+        "sourceFields" : [ "count_l" ],
+        "targetField" : "count_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "sum",
+        "sourceFields" : [ "count_increment_l" ],
+        "targetField" : "count_increment_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "mean_rate_d" ],
+        "targetField" : "mean_mean_rate_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "mean_d" ],
+        "targetField" : "mean_mean_duration_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p50_d" ],
+        "targetField" : "p50_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p75_d" ],
+        "targetField" : "p75_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p98_d" ],
+        "targetField" : "p98_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p99_d" ],
+        "targetField" : "p99_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p999_d" ],
+        "targetField" : "p999_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "quantiles",
+        "sourceFields" : [ "values_ds" ],
+        "targetField" : "quantiles_ds",
+        "mapper" : false,
+        "parameters" : [ {
+          "key" : "multiValued",
+          "value" : "true"
+        } ]
+      }, {
+        "type" : "quantiles",
+        "sourceFields" : [ "values_ls" ],
+        "targetField" : "quantiles_ls",
+        "mapper" : false,
+        "parameters" : [ {
+          "key" : "multiValued",
+          "value" : "true"
+        } ]
+      }, {
+        "type" : "histogram",
+        "sourceFields" : [ "values_ds" ],
+        "targetField" : "histogram_ds",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "histogram",
+        "sourceFields" : [ "values_ls" ],
+        "targetField" : "histogram_ls",
+        "mapper" : false,
+        "parameters" : [ ]
+      } ],
+      "statsFields" : [ "aggr_count_i", "count_i", "position_i", "weight_d" ]
+    }, {
+      "id" : "hourlyMetricsRollup-counters",
+      "groupingFields" : [ "name_s", "server_s" ],
+      "signalTypes" : [ "counter" ],
+      "selectQuery" : "*:*",
+      "timeRange" : "[NOW-1MONTH TO NOW-1DAY]",
+      "outputPipeline" : "default",
+      "outputCollection" : "system_metrics",
+      "sourceRemove" : true,
+      "sourceCatchup" : false,
+      "outputRollup" : false,
+      "aggregates" : [ {
+        "type" : "max",
+        "sourceFields" : [ "count_l" ],
+        "targetField" : "max_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "min",
+        "sourceFields" : [ "count_l" ],
+        "targetField" : "min_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "sum",
+        "sourceFields" : [ "count_increment_l" ],
+        "targetField" : "count_increment_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "max",
+        "sourceFields" : [ "count_l" ],
+        "targetField" : "count_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      } ],
+      "statsFields" : [ "aggr_count_i", "count_i", "position_i", "weight_d" ]
+    }, {
+      "id" : "hourlyMetricsRollup-meters",
+      "groupingFields" : [ "name_s", "server_s" ],
+      "signalTypes" : [ "meter" ],
+      "selectQuery" : "*:*",
+      "timeRange" : "[NOW-1MONTH TO NOW-1DAY]",
+      "outputPipeline" : "default",
+      "outputCollection" : "system_metrics",
+      "sourceRemove" : true,
+      "sourceCatchup" : false,
+      "outputRollup" : false,
+      "aggregates" : [ {
+        "type" : "max",
+        "sourceFields" : [ "count_l" ],
+        "targetField" : "max_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "min",
+        "sourceFields" : [ "count_l" ],
+        "targetField" : "min_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "max",
+        "sourceFields" : [ "count_l" ],
+        "targetField" : "count_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "sum",
+        "sourceFields" : [ "count_increment_l" ],
+        "targetField" : "count_increment_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "mean_rate_d" ],
+        "targetField" : "mean_mean_rate_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      } ],
+      "statsFields" : [ "aggr_count_i", "count_i", "position_i", "weight_d" ]
+    }, {
+      "id" : "hourlyMetricsRollup-histograms",
+      "groupingFields" : [ "name_s", "server_s" ],
+      "signalTypes" : [ "histogram" ],
+      "selectQuery" : "*:*",
+      "timeRange" : "[NOW-1MONTH TO NOW-1DAY]",
+      "outputPipeline" : "default",
+      "outputCollection" : "system_metrics",
+      "sourceRemove" : true,
+      "sourceCatchup" : false,
+      "outputRollup" : false,
+      "aggregates" : [ {
+        "type" : "min",
+        "sourceFields" : [ "max_d" ],
+        "targetField" : "max_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "max",
+        "sourceFields" : [ "min_d" ],
+        "targetField" : "min_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "mean_d" ],
+        "targetField" : "mean_mean_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p50_d" ],
+        "targetField" : "p50_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p75_d" ],
+        "targetField" : "p75_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p98_d" ],
+        "targetField" : "p98_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p99_d" ],
+        "targetField" : "p99_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "mean",
+        "sourceFields" : [ "p999_d" ],
+        "targetField" : "p999_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "sum",
+        "sourceFields" : [ "count_l" ],
+        "targetField" : "count_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "sum",
+        "sourceFields" : [ "count_increment_l" ],
+        "targetField" : "count_increment_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "quantiles",
+        "sourceFields" : [ "values_ds" ],
+        "targetField" : "quantiles_ds",
+        "mapper" : false,
+        "parameters" : [ {
+          "key" : "multiValued",
+          "value" : "true"
+        } ]
+      }, {
+        "type" : "quantiles",
+        "sourceFields" : [ "values_ls" ],
+        "targetField" : "quantiles_ls",
+        "mapper" : false,
+        "parameters" : [ {
+          "key" : "multiValued",
+          "value" : "true"
+        } ]
+      }, {
+        "type" : "histogram",
+        "sourceFields" : [ "values_ds" ],
+        "targetField" : "histogram_ds",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "histogram",
+        "sourceFields" : [ "values_ls" ],
+        "targetField" : "histogram_ls",
+        "mapper" : false,
+        "parameters" : [ ]
+      } ],
+      "statsFields" : [ "aggr_count_i", "count_i", "position_i", "weight_d" ]
+    }, {
+      "id" : "dailyMetricsRollup-counters",
+      "groupingFields" : [ "name_s", "server_s" ],
+      "signalTypes" : [ "counter" ],
+      "selectQuery" : "*:*",
+      "timeRange" : "[NOW-13MONTHS TO NOW-1MONTH]",
+      "outputPipeline" : "default",
+      "outputCollection" : "system_metrics",
+      "sourceRemove" : true,
+      "sourceCatchup" : false,
+      "outputRollup" : false,
+      "aggregates" : [ {
+        "type" : "max",
+        "sourceFields" : [ "max_d" ],
+        "targetField" : "max_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "min",
+        "sourceFields" : [ "min_d" ],
+        "targetField" : "min_d",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "max",
+        "sourceFields" : [ "count_l" ],
+        "targetField" : "count_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      }, {
+        "type" : "sum",
+        "sourceFields" : [ "count_increment_l" ],
+        "targetField" : "count_increment_l",
+        "mapper" : false,
+        "parameters" : [ ]
+      } ],
+      "statsFields" : [ "aggr_count_i", "count_i", "position_i", "weight_d" ]
+    } ],
+    "features" : {
+      "nhtsa_complaints" : [ {
+        "name" : "partitionByTime",
+        "collectionId" : "nhtsa_complaints",
+        "params" : { },
+        "enabled" : false
+      }, {
+        "name" : "signals",
+        "collectionId" : "nhtsa_complaints",
+        "params" : { },
+        "enabled" : true
+      }, {
+        "name" : "searchLogs",
+        "collectionId" : "nhtsa_complaints",
+        "params" : { },
+        "enabled" : true
+      }, {
+        "name" : "dynamicSchema",
+        "collectionId" : "nhtsa_complaints",
+        "params" : { },
+        "enabled" : false
+      } ],
+      "nhtsa_recalls" : [ {
+        "name" : "partitionByTime",
+        "collectionId" : "nhtsa_recalls",
+        "params" : { },
+        "enabled" : false
+      }, {
+        "name" : "signals",
+        "collectionId" : "nhtsa_recalls",
+        "params" : { },
+        "enabled" : true
+      }, {
+        "name" : "searchLogs",
+        "collectionId" : "nhtsa_recalls",
+        "params" : { },
+        "enabled" : true
+      }, {
+        "name" : "dynamicSchema",
+        "collectionId" : "nhtsa_recalls",
+        "params" : { },
+        "enabled" : false
+      } ]
+    },
+    "indexProfiles" : {
+      "nhtsa_complaints" : {
+        "default" : "nhtsa_complaints-default"
+      },
+      "nhtsa_recalls" : {
+        "default" : "nhtsa_recalls-default"
+      }
+    },
+    "queryProfiles" : {
+      "nhtsa_complaints" : {
+        "default" : "nhtsa_complaints-default"
+      },
+      "nhtsa_recalls" : {
+        "default" : "nhtsa_recalls-default"
+      }
+    },
+    "parsers" : [ {
+      "id" : "recalls_10_k_csv-nhtsa_recalls",
+      "enableMediaTypeDetection" : true,
+      "maxParserDepth" : 16,
+      "parserStages" : [ {
+        "type" : "archive",
+        "label" : "archive",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "279a29f7-83da-4376-8335-fbd38088df75",
+        "alwaysDetect" : true,
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "csv",
+        "label" : "csv",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "68c18c2f-c52b-438e-ab3e-1eea72eeddb6",
+        "charset" : "detect",
+        "ignoreBOM" : false,
+        "autoDetect" : true,
+        "hasHeaders" : true,
+        "headers" : [ ],
+        "fillValue" : "<FILL>",
+        "trimWhitespace" : true,
+        "skipEmptyLines" : true,
+        "includeRowNumber" : true,
+        "commentHandling" : "ignore",
+        "maxRowLength" : 10485760,
+        "maxNumColumns" : 1000,
+        "maxColumnChars" : 10485760,
+        "columnHandling" : "default",
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "json",
+        "label" : "json",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "6b879fe9-befa-4b45-b7ba-ef4663c29852",
+        "splitArrays" : true,
+        "includePath" : false,
+        "mappings" : [ ],
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "text",
+        "label" : "text",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "e7b417f0-9bcc-4cfc-a985-2e06f99a666f",
+        "charset" : "detect",
+        "ignoreBOM" : false,
+        "maxLength" : 1048576,
+        "maxLineLength" : 1048576,
+        "outputField" : "body",
+        "splitLines" : false,
+        "skipEmptyLines" : false,
+        "skipHeaderLines" : 0,
+        "trimWhitespace" : false,
+        "commentHandling" : "include",
+        "comment" : "#",
+        "commentField" : "comment",
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "tika",
+        "label" : "tika",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "95259cca-e5b5-4ece-85de-8bcf89ecb389",
+        "includeImages" : false,
+        "flattenCompound" : true,
+        "addFailedDocs" : false,
+        "addOriginalContent" : false,
+        "contentEncoding" : "binary",
+        "returnXml" : false,
+        "keepOriginalStructure" : false,
+        "extractHtmlLinks" : false,
+        "extractOtherLinks" : false,
+        "excludeContentTypes" : [ ],
+        "zipBombCompressionRatio" : 200,
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "fallback",
+        "label" : "fallback",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "61cd4a2b-5266-4584-a5c8-01d30e4dc2d2",
+        "metadataOnly" : false,
+        "maxBytesToKeep" : 1048576,
+        "inheritMediaTypes" : true
+      } ],
+      "properties" : {
+        "sourceId" : "default",
+        "lastModified" : 1485905072830
+      }
+    }, {
+      "id" : "_lw_iwb_tmp_172039",
+      "enableMediaTypeDetection" : true,
+      "maxParserDepth" : 16,
+      "parserStages" : [ {
+        "type" : "archive",
+        "label" : "archive",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "279a29f7-83da-4376-8335-fbd38088df75",
+        "alwaysDetect" : true,
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "csv",
+        "label" : "csv",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "68c18c2f-c52b-438e-ab3e-1eea72eeddb6",
+        "charset" : "detect",
+        "ignoreBOM" : false,
+        "autoDetect" : true,
+        "hasHeaders" : true,
+        "headers" : [ ],
+        "fillValue" : "<FILL>",
+        "trimWhitespace" : true,
+        "skipEmptyLines" : true,
+        "includeRowNumber" : true,
+        "commentHandling" : "ignore",
+        "maxRowLength" : 10485760,
+        "maxNumColumns" : 1000,
+        "maxColumnChars" : 10485760,
+        "columnHandling" : "default",
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "json",
+        "label" : "json",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "6b879fe9-befa-4b45-b7ba-ef4663c29852",
+        "splitArrays" : true,
+        "includePath" : false,
+        "mappings" : [ ],
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "text",
+        "label" : "text",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "e7b417f0-9bcc-4cfc-a985-2e06f99a666f",
+        "charset" : "detect",
+        "ignoreBOM" : false,
+        "maxLength" : 1048576,
+        "maxLineLength" : 1048576,
+        "outputField" : "body",
+        "splitLines" : false,
+        "skipEmptyLines" : false,
+        "skipHeaderLines" : 0,
+        "trimWhitespace" : false,
+        "commentHandling" : "include",
+        "comment" : "#",
+        "commentField" : "comment",
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "tika",
+        "label" : "tika",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "95259cca-e5b5-4ece-85de-8bcf89ecb389",
+        "includeImages" : false,
+        "flattenCompound" : true,
+        "addFailedDocs" : false,
+        "addOriginalContent" : false,
+        "contentEncoding" : "binary",
+        "returnXml" : false,
+        "keepOriginalStructure" : false,
+        "extractHtmlLinks" : false,
+        "extractOtherLinks" : false,
+        "excludeContentTypes" : [ ],
+        "zipBombCompressionRatio" : 200,
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "fallback",
+        "label" : "fallback",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "61cd4a2b-5266-4584-a5c8-01d30e4dc2d2",
+        "metadataOnly" : false,
+        "maxBytesToKeep" : 1048576,
+        "inheritMediaTypes" : true
+      } ],
+      "properties" : {
+        "sourceId" : "default",
+        "lastModified" : 1485894511367
+      }
+    }, {
+      "id" : "complaints_w_header_250_k_csv-nhtsa_complaints",
+      "enableMediaTypeDetection" : true,
+      "maxParserDepth" : 16,
+      "parserStages" : [ {
+        "type" : "archive",
+        "label" : "archive",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "279a29f7-83da-4376-8335-fbd38088df75",
+        "alwaysDetect" : true,
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "csv",
+        "label" : "csv",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "68c18c2f-c52b-438e-ab3e-1eea72eeddb6",
+        "charset" : "detect",
+        "ignoreBOM" : false,
+        "autoDetect" : true,
+        "hasHeaders" : true,
+        "headers" : [ ],
+        "fillValue" : "<FILL>",
+        "trimWhitespace" : true,
+        "skipEmptyLines" : true,
+        "includeRowNumber" : true,
+        "commentHandling" : "ignore",
+        "maxRowLength" : 10485760,
+        "maxNumColumns" : 1000,
+        "maxColumnChars" : 10485760,
+        "columnHandling" : "default",
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "json",
+        "label" : "json",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "6b879fe9-befa-4b45-b7ba-ef4663c29852",
+        "splitArrays" : true,
+        "includePath" : false,
+        "mappings" : [ ],
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "text",
+        "label" : "text",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "e7b417f0-9bcc-4cfc-a985-2e06f99a666f",
+        "charset" : "detect",
+        "ignoreBOM" : false,
+        "maxLength" : 1048576,
+        "maxLineLength" : 1048576,
+        "outputField" : "body",
+        "splitLines" : false,
+        "skipEmptyLines" : false,
+        "skipHeaderLines" : 0,
+        "trimWhitespace" : false,
+        "commentHandling" : "include",
+        "comment" : "#",
+        "commentField" : "comment",
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "tika",
+        "label" : "tika",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "95259cca-e5b5-4ece-85de-8bcf89ecb389",
+        "includeImages" : false,
+        "flattenCompound" : true,
+        "addFailedDocs" : false,
+        "addOriginalContent" : false,
+        "contentEncoding" : "binary",
+        "returnXml" : false,
+        "keepOriginalStructure" : false,
+        "extractHtmlLinks" : false,
+        "extractOtherLinks" : false,
+        "excludeContentTypes" : [ ],
+        "zipBombCompressionRatio" : 200,
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "fallback",
+        "label" : "fallback",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "61cd4a2b-5266-4584-a5c8-01d30e4dc2d2",
+        "metadataOnly" : false,
+        "maxBytesToKeep" : 1048576,
+        "inheritMediaTypes" : true
+      } ],
+      "properties" : {
+        "sourceId" : "default",
+        "lastModified" : 1485897185272
+      }
+    }, {
+      "id" : "_lw_iwb_tmp_434716",
+      "enableMediaTypeDetection" : true,
+      "maxParserDepth" : 16,
+      "parserStages" : [ {
+        "type" : "archive",
+        "label" : "archive",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "279a29f7-83da-4376-8335-fbd38088df75",
+        "alwaysDetect" : true,
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "csv",
+        "label" : "csv",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "68c18c2f-c52b-438e-ab3e-1eea72eeddb6",
+        "charset" : "detect",
+        "ignoreBOM" : false,
+        "autoDetect" : true,
+        "hasHeaders" : true,
+        "headers" : [ ],
+        "fillValue" : "<FILL>",
+        "trimWhitespace" : true,
+        "skipEmptyLines" : true,
+        "includeRowNumber" : true,
+        "commentHandling" : "ignore",
+        "maxRowLength" : 10485760,
+        "maxNumColumns" : 1000,
+        "maxColumnChars" : 10485760,
+        "columnHandling" : "default",
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "json",
+        "label" : "json",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "6b879fe9-befa-4b45-b7ba-ef4663c29852",
+        "splitArrays" : true,
+        "includePath" : false,
+        "mappings" : [ ],
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "text",
+        "label" : "text",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "e7b417f0-9bcc-4cfc-a985-2e06f99a666f",
+        "charset" : "detect",
+        "ignoreBOM" : false,
+        "maxLength" : 1048576,
+        "maxLineLength" : 1048576,
+        "outputField" : "body",
+        "splitLines" : false,
+        "skipEmptyLines" : false,
+        "skipHeaderLines" : 0,
+        "trimWhitespace" : false,
+        "commentHandling" : "include",
+        "comment" : "#",
+        "commentField" : "comment",
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "tika",
+        "label" : "tika",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "95259cca-e5b5-4ece-85de-8bcf89ecb389",
+        "includeImages" : false,
+        "flattenCompound" : true,
+        "addFailedDocs" : false,
+        "addOriginalContent" : false,
+        "contentEncoding" : "binary",
+        "returnXml" : false,
+        "keepOriginalStructure" : false,
+        "extractHtmlLinks" : false,
+        "extractOtherLinks" : false,
+        "excludeContentTypes" : [ ],
+        "zipBombCompressionRatio" : 200,
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "fallback",
+        "label" : "fallback",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "61cd4a2b-5266-4584-a5c8-01d30e4dc2d2",
+        "metadataOnly" : false,
+        "maxBytesToKeep" : 1048576,
+        "inheritMediaTypes" : true
+      } ],
+      "properties" : {
+        "sourceId" : "default",
+        "lastModified" : 1485890133645
+      }
+    }, {
+      "id" : "_lw_iwb_tmp_820197",
+      "enableMediaTypeDetection" : true,
+      "maxParserDepth" : 16,
+      "parserStages" : [ {
+        "type" : "archive",
+        "label" : "archive",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "279a29f7-83da-4376-8335-fbd38088df75",
+        "alwaysDetect" : true,
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "csv",
+        "label" : "csv",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "68c18c2f-c52b-438e-ab3e-1eea72eeddb6",
+        "charset" : "detect",
+        "ignoreBOM" : false,
+        "autoDetect" : true,
+        "hasHeaders" : true,
+        "headers" : [ ],
+        "fillValue" : "<FILL>",
+        "trimWhitespace" : true,
+        "skipEmptyLines" : true,
+        "includeRowNumber" : true,
+        "commentHandling" : "ignore",
+        "maxRowLength" : 10485760,
+        "maxNumColumns" : 1000,
+        "maxColumnChars" : 10485760,
+        "columnHandling" : "default",
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "json",
+        "label" : "json",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "6b879fe9-befa-4b45-b7ba-ef4663c29852",
+        "splitArrays" : true,
+        "includePath" : false,
+        "mappings" : [ ],
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "text",
+        "label" : "text",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "e7b417f0-9bcc-4cfc-a985-2e06f99a666f",
+        "charset" : "detect",
+        "ignoreBOM" : false,
+        "maxLength" : 1048576,
+        "maxLineLength" : 1048576,
+        "outputField" : "body",
+        "splitLines" : false,
+        "skipEmptyLines" : false,
+        "skipHeaderLines" : 0,
+        "trimWhitespace" : false,
+        "commentHandling" : "include",
+        "comment" : "#",
+        "commentField" : "comment",
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "tika",
+        "label" : "tika",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "95259cca-e5b5-4ece-85de-8bcf89ecb389",
+        "includeImages" : false,
+        "flattenCompound" : true,
+        "addFailedDocs" : false,
+        "addOriginalContent" : false,
+        "contentEncoding" : "binary",
+        "returnXml" : false,
+        "keepOriginalStructure" : false,
+        "extractHtmlLinks" : false,
+        "extractOtherLinks" : false,
+        "excludeContentTypes" : [ ],
+        "zipBombCompressionRatio" : 200,
+        "inheritMediaTypes" : true
+      }, {
+        "type" : "fallback",
+        "label" : "fallback",
+        "enabled" : true,
+        "mediaTypes" : [ ],
+        "pathPatterns" : [ ],
+        "errorHandling" : "mark",
+        "id" : "61cd4a2b-5266-4584-a5c8-01d30e4dc2d2",
+        "metadataOnly" : false,
+        "maxBytesToKeep" : 1048576,
+        "inheritMediaTypes" : true
+      } ],
+      "properties" : {
+        "sourceId" : "default",
+        "lastModified" : 1485904925520
+      }
+    } ],
+    "dataSources" : [ {
+      "id" : "recalls_10_k_csv-nhtsa_recalls",
+      "created" : "2017-01-31T23:22:05.406Z",
+      "modified" : "2017-01-31T23:22:05.406Z",
+      "connector" : "lucid.fileupload",
+      "type" : "fileupload",
+      "pipeline" : "nhtsa_recalls-default",
+      "parserId" : "recalls_10_k_csv-nhtsa_recalls",
+      "properties" : {
+        "mediaType" : "application/octet-stream",
+        "collection" : "nhtsa_recalls",
+        "fileId" : "recalls-10K.csv"
+      }
+    }, {
+      "id" : "complaints_w_header_250_k_csv-nhtsa_complaints",
+      "created" : "2017-01-31T20:24:55.494Z",
+      "modified" : "2017-01-31T20:24:55.494Z",
+      "connector" : "lucid.fileupload",
+      "type" : "fileupload",
+      "pipeline" : "nhtsa_complaints-default",
+      "parserId" : "complaints_w_header_250_k_csv-nhtsa_complaints",
+      "properties" : {
+        "mediaType" : "application/octet-stream",
+        "collection" : "nhtsa_complaints",
+        "fileId" : "complaints-w-header-250K.csv"
+      }
+    } ]
+  },
+  "metadata" : {
+    "formatVersion" : "1",
+    "exportedBy" : "8c71816d-e087-4429-bb61-9562c5121a81",
+    "exportedDate" : "2017-01-31T23:24:46.762Z",
+    "fusionVersion" : "3.0.0",
+    "fusionGuid" : "84681614-e7f6-4df0-abcc-64194dac004c"
+  }
+}
