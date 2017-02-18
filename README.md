@@ -9,7 +9,7 @@ Demo used for exploring NHTSA Auto data with Fusion and Tableau.  Full data sets
 
 # Install
 
-1. Start Fusion
+1. Start Fusion, including SQL engine.
 1. From Devops->Import Objects, upload fusion-setup.json and save/overwrite
 1. Within the Complaints Collection, overwrite the Solr default schema with setup/nhtsa_complaints-schema.xml
 1. Within the Recalls Collection, overwrite the Solr default schema with setup/nhtsa_recalls-schema.xml_
